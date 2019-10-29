@@ -2,25 +2,50 @@
 
 // loads the data that comes from OpenWeatherMap api
 function loadData() {
+    var url = getURL();
+    var error = errorHandle();
     var xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var weatherData = JSON.parse(this.responseText);
 
-            //if readyState repsonse is ready and status is "OK"
-            //call handleData function
+            // if readyState repsonse is ready and status is "OK"
+            // call handleData function
             handleData(weatherData);
+            // clear input
+            document.getElementById("zipInput").value = "";
         } else {
-            console.log("error");
+            document.getElementById("error").innerHTML = error;
         }
     };
 
-    xhr.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=Lansdale&units=imperial&appid=e99128fa5241d4f1922d6bd9223d7137", true);
+    xhr.open("GET", url, true);
     xhr.send();
 }
 
-//function that manipulates the data and puts applies it in DOM
+// function that takes in user's zip code and inserts into url
+function getURL() {
+    var zipInput = document.getElementById("zipInput").value;
+    var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + zipInput + ",us&units=imperial&appid=e99128fa5241d4f1922d6bd9223d7137";
+
+    return url;
+}
+
+function errorHandle() {
+    var url = getURL();
+    var searchIndex = url.search("zip=");
+    var subString = url.substring(searchIndex + 4, 56);
+    var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(subString);
+
+    if (!isValidZip) {
+        return "Invalid Zip Code";
+    } else {
+        return "";
+    }
+}
+
+// function that manipulates the data and puts applies it in DOM
 function handleData(data) {
     var city = data.name;
     var main = data.weather[0].main;
@@ -35,5 +60,16 @@ function handleData(data) {
     document.getElementById("hi-lo").innerHTML = "High - " + Math.floor(min) + ", Low - " + Math.ceil(max);
 }
 
-//function calls
-loadData();
+// event listeners
+function createEventListeners() {
+    var submit = document.getElementById("btn");
+
+    if (submit.addEventListener) {
+        submit.addEventListener("click", loadData, false);
+    } else if (submit.attachEvent) {
+        submit.attachEvent("onclick", loadData);
+    }
+}
+
+// function calls
+createEventListeners();
