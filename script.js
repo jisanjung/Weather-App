@@ -16,6 +16,7 @@ function loadData() {
             // clear input
             document.getElementById("zipInput").value = "";
         } else {
+            // throw error if zipcode is not valid
             document.getElementById("error").innerHTML = error;
         }
     };
@@ -32,6 +33,7 @@ function getURL() {
     return url;
 }
 
+// handles errors using regular expressions
 function errorHandle() {
     var url = getURL();
     var searchIndex = url.search("zip=");
@@ -58,6 +60,26 @@ function handleData(data) {
     document.getElementById("weather").innerHTML = main + " - " + description;
     document.getElementById("temp").innerHTML = Math.ceil(temperature) + "&#8457;";
     document.getElementById("hi-lo").innerHTML = "High - " + Math.floor(min) + ", Low - " + Math.ceil(max);
+
+    // call function to display weather depending on the variable "main"
+    weatherType(main);
+}
+
+// changes interface depending on what the weather is like
+function weatherType(weather) {
+    if (weather === "Thunderstorm") {
+        console.log("thunderstorm");
+    } else if (weather === "Drizzle") {
+        console.log("drizzle");
+    } else if (weather === "Rain") {
+        console.log("rain");
+    } else if (weather === "Snow") {
+        console.log("snow");
+    } else if (weather === "Clear") {
+        console.log("clear");
+    } else if (weather === "Clouds") {
+        console.log("clouds");
+    }
 }
 
 // event listeners

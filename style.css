@@ -1,0 +1,86 @@
+/* global */
+*  {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    color: #fff;
+}
+body {
+    background-color: black;
+}
+.grid-wrap {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(20px, auto);
+}
+.horizontal-center {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.vertical-center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.all-center {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.container {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+/* input */
+form {
+    grid-column: 1/13;
+}
+#zipInput {
+    padding: 20px;
+    grid-column: 1/10;
+    border-bottom: solid 1px #fff;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    background-color: transparent;
+}
+#zipInput::placeholder {
+    color: #fff;
+}
+#btn {
+    grid-column: 10/13;
+    background-color: #fff;
+    border: none;
+    padding: 5px;
+}
+#btn img {
+    width: 30px;
+    margin-top: 5px;
+}
+/* display info */
+#defaultText {
+    grid-column: 1/13;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 50%;
+}
+#error {
+    grid-column: 1/13;
+}
+#city {
+    grid-column: 1/13;
+}
+#weather {
+    grid-column: 1/13;
+}
+#temp {
+    grid-column: 1/13;
+}
+#hi-lo {
+    grid-column: 1/13;
+}

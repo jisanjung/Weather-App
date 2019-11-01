@@ -2,20 +2,30 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>JSON</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Weather</title>
+        <!--CSS-->
+        <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css" type="text/css">
     </head>
     <body>
-        <form>
-            <input type="text" placeholder="Enter Zip Code" pattern="[0-9]{5}" id="zipInput">
-            <button type="button" id="btn">Enter</button>
-        </form>
-        <ul id="data">
-            <li id="error"></li>
-            <li id="city"></li>
-            <li id="weather"></li>
-            <li id="temp"></li>
-            <li id="hi-lo"></li>
-        </ul>
+        <!--ZIP CODE INPUT-->
+        <div class="container">
+            <div class="grid-wrap">
+                <form class="grid-wrap">
+                    <input type="text" placeholder="Enter Zip Code" pattern="[0-9]{5}" id="zipInput">
+                    <button type="button" id="btn"><img src="images/icons8-search-50.png" alt="search"></button>
+                </form>
+                <div id="defaultText">Get the current weather by simply entering zip code!</div>
+                <!--WEATHER OUTPUT-->
+                <div id="error"></div>
+                <div id="city"></div>
+                <div id="weather"></div>
+                <div id="temp"></div>
+                <div id="hi-lo"></div>
+            </div>
+        </div>
+        <!--JAVASCRIPT-->
         <script src="script.js"></script>
     </body>
 </html>
