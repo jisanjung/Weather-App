@@ -55,11 +55,22 @@ function handleData(data) {
     var temperature = data.main.temp;
     var min = data.main.temp_min;
     var max = data.main.temp_max;
+    var defaultText = document.getElementById("defaultText");
+    var back = document.getElementById("back");
 
-    document.getElementById("city").innerHTML = "Current weather for " + city;
+    // on search button click, checks if user is on default page
+    if (defaultText) {
+        defaultText.parentNode.removeChild(defaultText);
+        back.style.display = "block";
+    } else {
+        defaultText = "Get the current weather by simply entering zip code!";
+        back.style.display = "none";
+    }
+
+    document.getElementById("city").innerHTML = "Current weather for " + "<p>" + city + "</p>";
     document.getElementById("weather").innerHTML = main + " - " + description;
     document.getElementById("temp").innerHTML = Math.ceil(temperature) + "&#8457;";
-    document.getElementById("hi-lo").innerHTML = "High - " + Math.floor(min) + ", Low - " + Math.ceil(max);
+    document.getElementById("hi-lo").innerHTML = "High - " + Math.floor(min) + "&#176;" + ", Low - " + Math.ceil(max) + "&#176;";
 
     // call function to display weather depending on the variable "main"
     weatherType(main);
@@ -68,28 +79,42 @@ function handleData(data) {
 // changes interface depending on what the weather is like
 function weatherType(weather) {
     if (weather === "Thunderstorm") {
-        console.log("thunderstorm");
+        document.body.style.backgroundImage = "url('images/thunder.jpg')";
     } else if (weather === "Drizzle") {
-        console.log("drizzle");
+        document.body.style.backgroundImage = "url('images/drizzle.jpg')";
     } else if (weather === "Rain") {
-        console.log("rain");
+        document.body.style.backgroundImage = "url('images/rain.jpg')";
     } else if (weather === "Snow") {
-        console.log("snow");
+        document.body.style.backgroundImage = "url('images/snow.jpg')";
     } else if (weather === "Clear") {
-        console.log("clear");
+        document.body.style.backgroundImage = "url('images/clear.jpg')";
     } else if (weather === "Clouds") {
-        console.log("clouds");
+        document.body.style.backgroundImage = "url('images/clouds.jpg')";
+    } else {
+        document.body.style.backgroundImage = "url('images/default.jpg')";
     }
+}
+
+// reload page
+function reload() {
+    location.reload();
 }
 
 // event listeners
 function createEventListeners() {
     var submit = document.getElementById("btn");
+    var back = document.getElementById("back");
 
     if (submit.addEventListener) {
         submit.addEventListener("click", loadData, false);
     } else if (submit.attachEvent) {
         submit.attachEvent("onclick", loadData);
+    }
+
+    if (back.addEventListener) {
+        back.addEventListener("click", reload, false);
+    } else if (back.attachEvent) {
+        back.attachEvent("onclick", reload);
     }
 }
 
