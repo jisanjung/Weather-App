@@ -39,10 +39,16 @@ function errorHandle() {
     var searchIndex = url.search("zip=");
     var subString = url.substring(searchIndex + 4, 56);
     var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(subString);
+    var zipInput = document.getElementById("zipInput");
 
     if (!isValidZip) {
+        zipInput.style.border = "solid 2px #ff0000";
         return "Invalid Zip Code";
     } else {
+        zipInput.style.borderTop = "none";
+        zipInput.style.borderRight = "none";
+        zipInput.style.borderLeft = "none";
+        zipInput.style.borderBottom = "solid 1px #fff";
         return "";
     }
 }
@@ -58,13 +64,14 @@ function handleData(data) {
     var defaultText = document.getElementById("defaultText");
     var back = document.getElementById("back");
 
+    // show back button when data is loaded
+    back.style.display = "block";
+
     // on search button click, checks if user is on default page
     if (defaultText) {
         defaultText.parentNode.removeChild(defaultText);
-        back.style.display = "block";
     } else {
         defaultText = "Get the current weather by simply entering zip code!";
-        back.style.display = "none";
     }
 
     document.getElementById("city").innerHTML = "Current weather for " + "<p>" + city + "</p>";
