@@ -7,8 +7,13 @@
     font-size: 16px;
     color: #fff;
 }
+body, html {
+    min-height: 100%;
+}
 body {
     background-image: url("images/default.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .grid-wrap {
     overflow: hidden;
@@ -97,10 +102,13 @@ form {
 }
 #back {
     position: fixed;
-    bottom: 50px;
+    bottom: 5%;
     background-color: transparent;
     border: none;
     display: none;
+}
+#back img {
+    width: 35px;
 }
 /* tint */
 .tint {
@@ -116,4 +124,94 @@ form {
 #error {
     font-size: 12px;
     padding: 5px;
+}
+/* media queries */
+/* iphone 6, 7, 8 */
+@media screen and (max-height: 667px) {
+    #defaultText {
+        grid-row: 10/15;
+    }
+    #temp {
+        grid-row: 10/13;
+    }
+    #weather {
+        grid-row: 13/16;
+    }
+    #hi-lo {
+        grid-row: 19/21;
+    }
+}
+/* iphone 5, 5s, se */
+@media screen and (max-height: 568px) {
+    #hi-lo {
+        grid-row: 17/20;
+    }
+}
+@media screen and (max-width: 320px) {
+    * {
+        font-size: 14px;
+    }
+    #defaultText {
+        font-size: 36px;
+    }
+    #city p {
+        font-size: 44px;
+    }
+    #temp {
+        font-size: 110px;
+    }
+    #hi-lo {
+        font-size: 18px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .container {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    #back {
+        top: 5%;
+        left: 5%;
+        bottom: auto;
+    }
+    #defaultText {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+    }
+    form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    #error {
+        position: absolute;
+        top: 60%;
+        left: 30%;
+        transform: translate(-50%, -50%);
+    }
+    #temp {
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        transform: translate(-50%, -50%);
+    }
+    #weather {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        transform: translate(-50%, -50%);
+    }
+    #hi-lo {
+        position: absolute;
+        left: 50%;
+        top: 70%;
+        transform: translate(-50%, -50%);
+    }
 }
