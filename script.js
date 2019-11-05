@@ -15,9 +15,13 @@ function loadData() {
             handleData(weatherData);
             // clear input
             document.getElementById("zipInput").value = "";
-        } else {
             // throw error if zipcode is not valid
+        } else if (!validZip || this.status === 400 || this.status === 404) {
+            errorHandle();
             document.getElementById("error").innerHTML = error;
+        } else {
+            // clear error
+            clearInput();
         }
     };
 
@@ -33,24 +37,35 @@ function getURL() {
     return url;
 }
 
-// handles errors using regular expressions
-function errorHandle() {
+// clear input
+function clearInput() {
+    var zipInput = document.getElementById("zipInput");
+    zipInput.style.borderTop = "none";
+    zipInput.style.borderRight = "none";
+    zipInput.style.borderLeft = "none";
+    zipInput.style.borderBottom = "solid 1px #fff";
+    document.getElementById("error").innerHTML = "";
+}
+
+// check is the zipcode is matches the regular expression
+function validZip() {
     var url = getURL();
     var searchIndex = url.search("zip=");
     var subString = url.substring(searchIndex + 4, 56);
     var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(subString);
-    var zipInput = document.getElementById("zipInput");
 
-    if (!isValidZip) {
-        zipInput.style.border = "solid 2px #ff0000";
-        return "Invalid Zip Code";
+    if (isValidZip) {
+        return true;
     } else {
-        zipInput.style.borderTop = "none";
-        zipInput.style.borderRight = "none";
-        zipInput.style.borderLeft = "none";
-        zipInput.style.borderBottom = "solid 1px #fff";
-        return "";
+        return false;
     }
+}
+
+// call this when there is an error
+function errorHandle() {
+    document.getElementById("zipInput").style.border = "solid 2px #ff0000";
+
+    return "Invalid Zip Code";
 }
 
 // function that manipulates the data and puts applies it in DOM
