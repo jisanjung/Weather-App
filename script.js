@@ -62,10 +62,10 @@ function handleData(data) {
     var min = data.main.temp_min;
     var max = data.main.temp_max;
     var defaultText = document.getElementById("defaultText");
-    var back = document.getElementById("back");
+    var home = document.getElementById("home");
 
-    // show back button when data is loaded
-    back.style.display = "block";
+    // show home button when data is loaded
+    home.style.display = "block";
 
     // on search button click, checks if user is on default page
     if (defaultText) {
@@ -77,7 +77,7 @@ function handleData(data) {
     document.getElementById("city").innerHTML = "Current weather for " + "<p>" + city + "</p>";
     document.getElementById("weather").innerHTML = main + " - " + description;
     document.getElementById("temp").innerHTML = Math.ceil(temperature) + "&#8457;";
-    document.getElementById("hi-lo").innerHTML = "High - " + Math.floor(min) + "&#176;" + ", Low - " + Math.ceil(max) + "&#176;";
+    document.getElementById("hi-lo").innerHTML = "High: " + Math.floor(min) + "&#176;" + ", Low: " + Math.ceil(max) + "&#176;";
 
     // call function to display weather depending on the variable "main"
     weatherType(main);
@@ -110,7 +110,7 @@ function reload() {
 // event listeners
 function createEventListeners() {
     var submit = document.getElementById("btn");
-    var back = document.getElementById("back");
+    var home = document.getElementById("home");
 
     if (submit.addEventListener) {
         submit.addEventListener("click", loadData, false);
@@ -118,10 +118,10 @@ function createEventListeners() {
         submit.attachEvent("onclick", loadData);
     }
 
-    if (back.addEventListener) {
-        back.addEventListener("click", reload, false);
+    if (home.addEventListener) {
+        home.addEventListener("click", reload, false);
     } else if (back.attachEvent) {
-        back.attachEvent("onclick", reload);
+        home.attachEvent("onclick", reload);
     }
 }
 
