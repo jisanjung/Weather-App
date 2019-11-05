@@ -58,9 +58,6 @@ form {
 #zipInput::placeholder {
     color: #fff;
 }
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0.1) inset;
-}
 #btn {
     grid-column: 10/13;
     background-color: #fff;

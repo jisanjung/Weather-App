@@ -77,7 +77,7 @@ function handleData(data) {
     document.getElementById("city").innerHTML = "Current weather for " + "<p>" + city + "</p>";
     document.getElementById("weather").innerHTML = main + " - " + description;
     document.getElementById("temp").innerHTML = Math.ceil(temperature) + "&#8457;";
-    document.getElementById("hi-lo").innerHTML = "High: " + Math.floor(min) + "&#176;" + ", Low: " + Math.ceil(max) + "&#176;";
+    document.getElementById("hi-lo").innerHTML = "High: " + Math.floor(max) + "&#176;" + ", Low: " + Math.ceil(min) + "&#176;";
 
     // call function to display weather depending on the variable "main"
     weatherType(main);
@@ -97,6 +97,8 @@ function weatherType(weather) {
         document.body.style.backgroundImage = "url('images/clear.jpg')";
     } else if (weather === "Clouds") {
         document.body.style.backgroundImage = "url('images/clouds.jpg')";
+    } else if (weather === "Mist") {
+        document.body.style.backgroundImage = "url('images/mist.jpg')";
     } else {
         document.body.style.backgroundImage = "url('images/default.jpg')";
     }
